@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <ul class="nav nav-tabs">         
+          <!-- 
+            1- we could provide the route in href but then we reload/submit the entire page
+              hence the use of routerLink directive 
+              routerLink catch the click event and prevent the default behavior (send request) and analyse 
+              the param passed ('/') and parses it and check a fitting route in the config (app module appRoutes!) 
+              that is better experience because it keeps app state (than submitting will destroy app state)
+
+            2- Relative path will add to the current route, an absolute route is much safer ('/' in front of it)
+              relative path are usefull if you have a nested route. path as used the same way as in directories navigation
+
+            3- routerActive give a visual indication of the current route through the bootstrap class 'active'.
+               in general u could have ur own myClassActive and then use routerLinkActive = 'myClassActive'
+
+            4- routerLinkActiveOptions={exact:true} will tells the routerActive directive that it needs to check an exact match route/path,
+            by default all parents paths (containing parts of the current path) of the current path will have 'active' class.
+
+            5- [routerLinkActiveOptions]="{exact:true}", needs to be between square bracket because we are not passing a string but a JS object
+               which need to be dynamically resolved! 
+
+            6- routerLink directive knows which route is currently set on unlike bnavigate method where you have to indicate 
+              the {relativeTo: ActivatedRoute} JS object (ActivatedRoute is received using a DI  and used as private property of the component) 
+            -->
+
+          <li role="presentation" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  routerLink="/"><a>Home</a></li>
+          <li role="presentation" routerActive="active"><a routerLink="/servers">Servers</a></li>
+          <li role="presentation" routerActive="active"><a [routerLink]="['/users']">Users</a></li>
+      </ul>
+    </div>
+  </div>
+  <!-- <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <app-home></app-home>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <app-users></app-users>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <app-servers></app-servers>
+    </div>
+  </div> -->
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!-- we mark the place to tell angular where to load the currently selected route (component) -->
+      <router-outlet></router-outlet> 
+    </div>
+  </div>
+</div>
