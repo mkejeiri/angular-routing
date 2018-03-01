@@ -1,5 +1,5 @@
-# This is an angular example:
-## Subjects:     
+# This is an angular Example
+## an introduction to:     
   - Binding, interpolation,...
   - Events
   - Services
